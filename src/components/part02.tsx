@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { fromEvent, Observable } from "rxjs";
 
-export const Part02 = () => {
+export const Part = () => {
   const [log, setLog]: any = useState([]);
 
   let bar = Observable.create((observer: any) => {

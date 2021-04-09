@@ -18,6 +18,9 @@ export default function App() {
         <Tab eventKey="part05" title="Part 5">
           <Parts.Part05 />
         </Tab>
+        <Tab eventKey="part06" title="Part 6">
+          <Parts.Part05 />
+        </Tab>
       </Tabs>
     </div>
   );

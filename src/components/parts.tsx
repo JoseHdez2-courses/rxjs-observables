@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
-import { fromEvent, Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 export const Part02 = () => {
-  const [log, setLog]: any = useState([]);
-
   let bar = Observable.create((observer: any) => {
     console.log("Hello");
     observer.next(42);
@@ -23,18 +21,11 @@ export const Part02 = () => {
     <div>
       <h5>Return multiple values from Observables in RxJS</h5>
       <Button onClick={onClick}>Open console and click this</Button>
-      <ListGroup>
-        {log.map((l: any) => (
-          <ListGroupItem>{l}</ListGroupItem>
-        ))}
-      </ListGroup>
     </div>
   );
 };
 
 export const Part03 = () => {
-  const [log, setLog]: any = useState([]);
-
   // Observable (PUSH)
   let bar = Observable.create((observer: any) => {
     console.log("Hello");
@@ -65,19 +56,13 @@ export const Part03 = () => {
   return (
     <div>
       <h5>Push Values from Observables in RxJS</h5>
-      <Button onClick={onClick}>Click</Button>
-      <ListGroup>
-        {log.map((l: any) => (
-          <ListGroupItem>{l}</ListGroupItem>
-        ))}
-      </ListGroup>
+      <Button onClick={onClick}>Open console and click this</Button>
     </div>
   );
 };
 
 export const Part04 = () => {
   const title = "Throw Errors with RxJS Observables";
-  const [log, setLog]: any = useState([]);
 
   // Observable (PUSH)
   let bar = Observable.create((observer: any) => {
@@ -109,19 +94,13 @@ export const Part04 = () => {
   return (
     <div>
       <h5>{title}</h5>
-      <Button onClick={onClick}>Click</Button>
-      <ListGroup>
-        {log.map((l: any) => (
-          <ListGroupItem>{l}</ListGroupItem>
-        ))}
-      </ListGroup>
+      <Button onClick={onClick}>Open console and click this</Button>
     </div>
   );
 };
 
 export const Part05 = () => {
   const title = "Perform an Action on Completion with RxJS Observables";
-  const [log, setLog]: any = useState([]);
 
   // Observable (PUSH)
   let bar = Observable.create((observer: any) => {
@@ -156,12 +135,41 @@ export const Part05 = () => {
   return (
     <div>
       <h5>{title}</h5>
-      <Button onClick={onClick}>Click</Button>
-      <ListGroup>
-        {log.map((l: any) => (
-          <ListGroupItem>{l}</ListGroupItem>
-        ))}
-      </ListGroup>
+      <Button onClick={onClick}>Open console and click this</Button>
+    </div>
+  );
+};
+
+export const Part06 = () => {
+  const title = "Deliver Synchronous Values with the RxJS of() Operator";
+
+  // Observable (PUSH)
+  let bar = Observable.create((observer: any) => {
+    observer.next(42);
+    observer.next(100);
+    observer.next(100);
+    observer.complete(200);
+  });
+
+  // less boilerplate
+  let foo = Observable.of(42, 100, 200);
+
+  const onClick = () => {
+    foo.subscribe(
+      (x: any) => {
+        console.log(x);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
+  };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={onClick}>Open console and click this</Button>
     </div>
   );
 };

@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Observable, of, from, fromEventPattern, fromEvent } from "rxjs";
+import {
+  Observable,
+  of,
+  from,
+  fromEvent,
+  empty,
+  never,
+  interval,
+  timer
+} from "rxjs";
 
 export const Part02 = () => {
   let bar = Observable.create((observer: any) => {
@@ -230,14 +239,73 @@ export const Part08 = () => {
     );
   };
 
-  // let foo = fromEventPattern(add, remove){
-  //   return
-  // }
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={onClick}>Open console and click this</Button>
+    </div>
+  );
+};
+
+export const Part09 = () => {
+  const title =
+    "Combine empty, never, and throw Operators with Observables in RxJS";
+
+  let foo = empty();
+  // let foo = never();
+  // let foo = throw();
+
+  const onClick = () => {
+    foo.subscribe(
+      (x: any) => {
+        console.log("next " + x);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
+  };
 
   return (
     <div>
       <h5>{title}</h5>
       <Button onClick={onClick}>Open console and click this</Button>
+    </div>
+  );
+};
+
+export const Part10 = () => {
+  const title = "Set Intervals with RxJS interval and timer Operators";
+
+  var date = new Date(new Date().getTime() + 6000);
+  let foo = interval(1000);
+  let foo2 = timer(date, 1000);
+
+  const onClick = (observable, name) => {
+    observable.subscribe(
+      (x: any) => {
+        console.log(`next ${name} ${x}`);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
+  };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={() => onClick(foo, "a")}>
+        Open console and click this
+      </Button>
+      <Button onClick={() => onClick(foo, "b")} variant="danger">
+        Then click this
+      </Button>
+      <Button onClick={() => onClick(foo2, "c")} variant="success">
+        then this
+      </Button>
     </div>
   );
 };

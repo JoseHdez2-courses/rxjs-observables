@@ -1,7 +1,5 @@
 import "./styles.css";
-import * as Part02 from "./components/part02";
-import * as Part03 from "./components/part03";
-import * as Part04 from "./components/part04";
+import * as Parts from "./components/parts";
 import { Tabs, Tab } from "react-bootstrap";
 
 export default function App() {
@@ -9,13 +7,16 @@ export default function App() {
     <div>
       <Tabs defaultActiveKey="part02" id="uncontrolled-tab-example">
         <Tab eventKey="part02" title="Part 2">
-          <Part02.Part />
+          <Parts.Part02 />
         </Tab>
         <Tab eventKey="part03" title="Part 3">
-          <Part03.Part />
+          <Parts.Part03 />
         </Tab>
         <Tab eventKey="part04" title="Part 4">
-          <Part04.Part />
+          <Parts.Part04 />
+        </Tab>
+        <Tab eventKey="part05" title="Part 5">
+          <Parts.Part05 />
         </Tab>
       </Tabs>
     </div>

@@ -152,7 +152,7 @@ export const Part06 = () => {
   });
 
   // less boilerplate
-  let foo = Observable.of(42, 100, 200);
+  let foo = of(42, 100, 200);
 
   const onClick = () => {
     foo.subscribe(
@@ -164,6 +164,32 @@ export const Part06 = () => {
         console.log("done");
       }
     );
+  };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={onClick}>Open console and click this</Button>
+    </div>
+  );
+};
+
+export const Part07 = () => {
+  const title = "Convert JavaScript Values to RxJS Observables";
+
+  let arr = [42, 100, 200];
+  // let foo = Observable.from(arr);
+
+  const onClick = () => {
+    // foo.subscribe(
+    //   (x: any) => {
+    //     console.log(x);
+    //   },
+    //   () => {
+    //     // complete handler.
+    //     console.log("done");
+    //   }
+    // );
   };
 
   return (

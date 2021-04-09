@@ -309,3 +309,39 @@ export const Part10 = () => {
     </div>
   );
 };
+
+export const Part11 = () => {
+  const title = "Understand the RxJS create Operator";
+
+  function subscribe(observer) {
+    observer.next(42);
+    observer.next(100);
+    observer.next(200);
+    observer.complete();
+  }
+
+  let foo = new Observable(subscribe);
+
+  let observer = {
+    next: (x) => {
+      console.log(`next ${x}`);
+    },
+    error: (err) => {
+      console.error(`error: ${err}`);
+    },
+    complete: () => {
+      console.log(`done`);
+    }
+  };
+
+  const onClick = () => {
+    foo.subscribe(observer);
+  };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={() => onClick()}>Open console and click this</Button>
+    </div>
+  );
+};

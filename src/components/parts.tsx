@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Observable, of } from "rxjs";
+import { Observable, of, from, fromEventPattern, fromEvent } from "rxjs";
 
 export const Part02 = () => {
   let bar = Observable.create((observer: any) => {
@@ -178,19 +178,61 @@ export const Part07 = () => {
   const title = "Convert JavaScript Values to RxJS Observables";
 
   let arr = [42, 100, 200];
-  // let foo = Observable.from(arr);
+  let foo = from(arr); // Observable.from is deprecated
 
   const onClick = () => {
-    // foo.subscribe(
-    //   (x: any) => {
-    //     console.log(x);
-    //   },
-    //   () => {
-    //     // complete handler.
-    //     console.log("done");
-    //   }
-    // );
+    foo.subscribe(
+      (x: any) => {
+        console.log(x);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
   };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={onClick}>Open console and click this</Button>
+    </div>
+  );
+};
+
+export const Part08 = () => {
+  const title =
+    "Convert DOM and Node.js Streams to RxJS Observables with fromEvent";
+
+  let arr = [42, 100, 200];
+  // let foo = from(arr); // Observable.from is deprecated
+
+  const addEventHandler = (handler) => {
+    document.addEventListener("click", handler);
+  };
+
+  const removeEventHandler = (handler) => {
+    document.removeEventListener("click", handler);
+  };
+
+  // let foo = fromEventPattern(addEventHandler, removeEventHandler);
+  let foo = fromEvent(document, "click");
+
+  const onClick = () => {
+    foo.subscribe(
+      (x: any) => {
+        console.log("next " + x);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
+  };
+
+  // let foo = fromEventPattern(add, remove){
+  //   return
+  // }
 
   return (
     <div>

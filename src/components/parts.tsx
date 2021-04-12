@@ -282,7 +282,7 @@ export const Part10 = () => {
   let foo = interval(1000);
   let foo2 = timer(date, 1000);
 
-  const onClick = (observable, name) => {
+  const onClick = (observable: any, name: any) => {
     observable.subscribe(
       (x: any) => {
         console.log(`next ${name} ${x}`);
@@ -313,7 +313,7 @@ export const Part10 = () => {
 export const Part11 = () => {
   const title = "Understand the RxJS create Operator";
 
-  function subscribe(observer) {
+  function subscribe(observer: any) {
     observer.next(42);
     observer.next(100);
     observer.next(200);
@@ -323,10 +323,10 @@ export const Part11 = () => {
   let foo = new Observable(subscribe);
 
   let observer = {
-    next: (x) => {
+    next: (x: any) => {
       console.log(`next ${x}`);
     },
-    error: (err) => {
+    error: (err: any) => {
       console.error(`error: ${err}`);
     },
     complete: () => {
@@ -342,6 +342,43 @@ export const Part11 = () => {
     <div>
       <h5>{title}</h5>
       <Button onClick={() => onClick()}>Open console and click this</Button>
+    </div>
+  );
+};
+
+// Return Subscriptions from the Subscribe Function in RxJs
+
+export const Part12 = () => {
+  const title = "Return Subscriptions from the Subscribe Function in RxJs";
+
+  let foo = new Observable((observer: any) => {
+    const id = setInterval(() => {
+      observer.next("hi");
+    }, 1000);
+    return function unsubscribe() {
+      clearInterval(id);
+    };
+  });
+
+  const onClick = (observable: any, name: any) => {
+    let subscription = observable.subscribe(
+      (x: any) => {
+        console.log(`next [${name}]: ${x}`);
+      },
+      () => {
+        // complete handler.
+        console.log("done");
+      }
+    );
+    setTimeout(() => subscription.unsubscribe(), 4500);
+  };
+
+  return (
+    <div>
+      <h5>{title}</h5>
+      <Button onClick={() => onClick(foo, "4-second sub")}>
+        Open console and click this
+      </Button>
     </div>
   );
 };

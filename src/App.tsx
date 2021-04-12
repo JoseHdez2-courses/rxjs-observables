@@ -12,7 +12,8 @@ const parts = [
   Parts.Part08,
   Parts.Part09,
   Parts.Part10,
-  Parts.Part11
+  Parts.Part11,
+  Parts.Part12
 ];
 
 export default function App() {

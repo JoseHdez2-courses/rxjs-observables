@@ -346,8 +346,6 @@ export const Part11 = () => {
   );
 };
 
-// Return Subscriptions from the Subscribe Function in RxJs
-
 export const Part12 = () => {
   const title = "Return Subscriptions from the Subscribe Function in RxJs";
 
